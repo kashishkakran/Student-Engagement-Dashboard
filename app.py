@@ -1,4 +1,3 @@
-# app.py
 import streamlit as st
 import pandas as pd
 
@@ -24,13 +23,13 @@ def prepare_data():
 
 
 def sidebar_filters(df: pd.DataFrame):
-    st.sidebar.header("🔎 Filters")
+    st.sidebar.header("Filters")
 
     # Optional: reset filters button
     if "reset_filters" not in st.session_state:
         st.session_state.reset_filters = 0
 
-    if st.sidebar.button("♻️ Reset filters"):
+    if st.sidebar.button("Reset filters"):
         st.session_state.reset_filters += 1
 
     # Helper: default to all values selected
@@ -125,9 +124,8 @@ def main():
         st.warning("No data matches the selected filters. Try resetting filters.")
         st.stop()
 
-    # =========================
+
     # KPI ROW
-    # =========================
     st.subheader("Key Metrics")
 
     stats = kpis(dff)
@@ -155,25 +153,24 @@ def main():
     # Row 1
     col1, col2 = st.columns(2)
     with col1:
-        st.plotly_chart(hist_engagement(dff), width="stretch")
+        st.plotly_chart(hist_engagement(dff), use_container_width=True)
     with col2:
-        st.plotly_chart(box_by_class(dff), width="stretch")
+        st.plotly_chart(box_by_class(dff), use_container_width=True)
 
     # Row 2
     col3, col4 = st.columns(2)
     with col3:
-        st.plotly_chart(bar_topic(dff, top_n=10), width="stretch")
+        st.plotly_chart(bar_topic(dff, top_n=10), use_container_width=True)
     with col4:
-        st.plotly_chart(scatter_resources_vs_hands(dff), width="stretch")
+        st.plotly_chart(scatter_resources_vs_hands(dff), use_container_width=True)
 
     st.divider()
 
-    
     # Data table
     st.subheader("Data Preview")
 
     with st.expander("Preview Filtered & Processed Data"):
-        st.dataframe(dff.head(100), width="stretch")
+        st.dataframe(dff.head(100), use_container_width=True)
 
 
 if __name__ == "__main__":
