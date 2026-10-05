@@ -11,7 +11,6 @@ A clean Streamlit app analyzing the **xAPI-Edu-Data** dataset and visualizing st
 ## Tech
 
 - Python, Pandas, Plotly, Streamlit
-- Project structured for clarity and interviews
 
 ## Setup (Mac)
 
